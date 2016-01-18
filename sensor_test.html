@@ -64,7 +64,7 @@ function orientation(event){
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
     + event.alpha + ", "
     + event.beta + ", "
-    + event.gamma;
+    + event.gamma + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
 }
 function go(){
   if(window.DeviceMotionEvent){
