@@ -55,11 +55,11 @@ function orientation(event){
   
   mag_alpha_temp > mag_alpha_high ? mag_alpha_high = mag_alpha_temp : mag_alpha_high = mag_alpha_high
   mag_beta_temp > mag_beta_high ? mag_beta_high = mag_beta_temp : mag_beta_high = mag_beta_high
-  mag_beta_temp > mag_gamma_high ? mag_gamma_high = mag_beta_temp : mag_gamma_high = mag_gamma_high
+  mag_gamma_temp > mag_gamma_high ? mag_gamma_high = mag_gamma_temp : mag_gamma_high = mag_gamma_high
   
   mag_alpha_temp < mag_alpha_low ? mag_alpha_low = mag_alpha_temp : mag_alpha_low = mag_alpha_low
   mag_beta_temp < mag_beta_low ? mag_beta_low = mag_beta_temp : mag_beta_low = mag_beta_low
-  mag_beta_temp < mag_gamma_low ? mag_gamma_low = mag_beta_temp : mag_gamma_low = mag_gamma_low
+  mag_gamma_temp < mag_gamma_low ? mag_gamma_low = mag_gamma_temp : mag_gamma_low = mag_gamma_low
   
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
     + event.alpha + ", "
