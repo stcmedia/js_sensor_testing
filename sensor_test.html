@@ -70,7 +70,7 @@ function orientation(event){
     + event.beta + ", "
     + event.gamma + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
   
-  if(mag_alpha_high > 0.15 && mag_apha_high < 359.85 || mag_beta_high > 0.15 || mag_gamma_high > 0.15 || mag_alpha_low < -0.15 || mag_beta_low < -0.15 || mag_gamma_low < -0.15){
+  if(mag_alpha_high > 0.15 && mag_apha_high < 359.85 || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_alpha_low < -0.15 || mag_beta_low < -1.0 || mag_gamma_low < -0.75){
     alert("human user - magnetometer")
   }
 }
