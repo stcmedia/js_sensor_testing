@@ -17,11 +17,36 @@ along with code. If not, see <http://www.gnu.org/licenses/>.
 <meta charset="UTF-8"/>
 <title>Sensors</title>
 <script type="text/javascript">
+var accel_x_high = 0
+var accel_y_high = 0
+var accel_z_high = 0
+var accel_x_low = 0
+var accel_y_low = 0
+var accel_z_low = 0
+var mag_alpha_high = 0
+var mag_beta_high = 0
+var mag_gamma_high = 0
+var mag_alpha_low = 0
+var mag_beta_low = 0
+var mag_gamma_low = 0
+
 function motion(event){
+  var accel_x_temp = 0
+  var accel_y_temp = 0
+  var accel_z_temp = 0
+  
+  accel_x_temp > accel_x_high ? accel_x_high = accel_x_temp : accel_x_high = accel_x_high
+  accel_y_temp > accel_y_high ? accel_y_high = accel_y_temp : accel_y_high = accel_y_high
+  accel_z_temp > accel_z_high ? accel_z_high = accel_z_temp : accel_z_high = accel_z_high
+  
+  accel_x_temp > accel_x_low ? accel_x_low = accel_x_temp : accel_x_low = accel_x_low
+  accel_y_temp > accel_y_low ? accel_y_low = accel_y_temp : accel_y_low = accel_y_low
+  accel_z_temp > accel_z_low ? accel_z_low = accel_z_temp : accel_z_low = accel_z_low
+  
   document.getElementById("accelerometer").innerHTML = "Accelerometer: "
-    + event.accelerationIncludingGravity.x + ", "
-    + event.accelerationIncludingGravity.y + ", "
-    + event.accelerationIncludingGravity.z;
+    + event.acceleration.x + ", "
+    + event.acceleration.y + ", "
+    + event.acceleration.z + "\nHighs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "\Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
 }
 function orientation(event){
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
