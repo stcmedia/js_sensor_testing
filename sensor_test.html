@@ -48,9 +48,9 @@ function motion(event){
     + event.acceleration.y + ", "
     + event.acceleration.z + "<br/>Highs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "<br/>Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
     
-  if accel_x_high > 0.1 || accel_y_high > 0.1 || accel_z_high > 0.1 || accel_x_low < -0.1 || accel_y_low < -0.1 || accel_z_low < -0.1
+  if(accel_x_high > 0.1 || accel_y_high > 0.1 || accel_z_high > 0.1 || accel_x_low < -0.1 || accel_y_low < -0.1 || accel_z_low < -0.1){
     alert("human user - accelerometer")
-  end
+  }
 }
 function orientation(event){
   var mag_alpha_temp = event.alpha
@@ -70,9 +70,9 @@ function orientation(event){
     + event.beta + ", "
     + event.gamma + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
   
-  if mad_alpha_high > 0.1 || mag_beta_high > 0.1 || mag_gamma_high > 0.1 || mag_alpha_low < -0.1 || mag_beta_low < -0.1 || mag_gamma_low < -0.1
+  if(mad_alpha_high > 0.1 || mag_beta_high > 0.1 || mag_gamma_high > 0.1 || mag_alpha_low < -0.1 || mag_beta_low < -0.1 || mag_gamma_low < -0.1){
     alert("human user - magnetometer")
-  end
+  }
 }
 function go(){
   if(window.DeviceMotionEvent){
