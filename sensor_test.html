@@ -29,50 +29,58 @@ var mag_gamma_high = 0
 var mag_alpha_low = 0
 var mag_beta_low = 0
 var mag_gamma_low = 0
+var mag_alpha_init = 0
+var mag_beta_init = 0
+var mag_gamma_init = 0
 
+function set_initials(){
+  mag_alpha_init = event.alpha
+  mag_beta_init = event.beta
+  mag_gamma_init = event.gamma
+}
 function motion(event){
   var accel_x_temp = event.acceleration.x
   var accel_y_temp = event.acceleration.y
   var accel_z_temp = event.acceleration.z
-  
+
   accel_x_temp > accel_x_high ? accel_x_high = accel_x_temp : accel_x_high = accel_x_high
   accel_y_temp > accel_y_high ? accel_y_high = accel_y_temp : accel_y_high = accel_y_high
   accel_z_temp > accel_z_high ? accel_z_high = accel_z_temp : accel_z_high = accel_z_high
-  
+
   accel_x_temp < accel_x_low ? accel_x_low = accel_x_temp : accel_x_low = accel_x_low
   accel_y_temp < accel_y_low ? accel_y_low = accel_y_temp : accel_y_low = accel_y_low
   accel_z_temp < accel_z_low ? accel_z_low = accel_z_temp : accel_z_low = accel_z_low
-  
+
   document.getElementById("accelerometer").innerHTML = "Accelerometer: "
-    + event.acceleration.x + ", "
-    + event.acceleration.y + ", "
-    + event.acceleration.z + "<br/>Highs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "<br/>Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
-    
-  if(accel_x_high > 0.2 || accel_y_high > 0.2 || accel_z_high > 0.2 || accel_x_low < -0.2 || accel_y_low < -0.2 || accel_z_low < -0.2){
-    alert("human user - accelerometer")
-  }
+    + Math.round(event.acceleration.x * 10) / 10 + ", "
+    + Math.round(event.acceleration.x * 10) / 10 + ", "
+    + Math.round(event.acceleration.x * 10) / 10 + "<br/>Highs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "<br/>Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
+
+  // if(accel_x_high > 0.2 || accel_y_high > 0.2 || accel_z_high > 0.2 || accel_x_low < -0.2 || accel_y_low < -0.2 || accel_z_low < -0.2){
+  //   alert("human user - accelerometer")
+  // }
 }
 function orientation(event){
   var mag_alpha_temp = event.alpha
   var mag_beta_temp = event.beta
   var mag_gamma_temp = event.gamma
-  
+
   mag_alpha_temp > mag_alpha_high ? mag_alpha_high = mag_alpha_temp : mag_alpha_high = mag_alpha_high
   mag_beta_temp > mag_beta_high ? mag_beta_high = mag_beta_temp : mag_beta_high = mag_beta_high
   mag_gamma_temp > mag_gamma_high ? mag_gamma_high = mag_gamma_temp : mag_gamma_high = mag_gamma_high
-  
+
   mag_alpha_temp < mag_alpha_low ? mag_alpha_low = mag_alpha_temp : mag_alpha_low = mag_alpha_low
   mag_beta_temp < mag_beta_low ? mag_beta_low = mag_beta_temp : mag_beta_low = mag_beta_low
   mag_gamma_temp < mag_gamma_low ? mag_gamma_low = mag_gamma_temp : mag_gamma_low = mag_gamma_low
-  
+
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
-    + event.alpha + ", "
-    + event.beta + ", "
-    + event.gamma + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
-  
-  if((mag_alpha_high > 0.3 && mag_alpha_high < 359.7) || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_beta_low < -1.0 || mag_gamma_low < -0.6){
-    alert("human user - magnetometer")
-  }
+    + Math.round(event.alpha * 10) / 10 + ", "
+    + Math.round(event.beta * 10) / 10 + ", "
+    + Math.round(event.gama * 10) / 10 + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
+
+  // if((mag_alpha_high > 0.3 && mag_alpha_high < 359.7) || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_beta_low < -1.0 || mag_gamma_low < -0.6){
+  //   alert("human user - magnetometer")
+  // }
 }
 function go(){
   if(window.DeviceMotionEvent){
