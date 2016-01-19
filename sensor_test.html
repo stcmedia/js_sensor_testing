@@ -103,7 +103,7 @@ function orientation(event){
   // if((Math.round(event.alpha * 10) / 10) < alpha_upper_limit & (Math.round(event.alpha * 10) / 10) > alpha_upper_limit) || (Math.round(event.beta * 10) / 10)  < beta_limit
 }
 function alpha_bounds(){
-  // alpha continuous on [0, 360]
+  // alpha continuous on [0, 360)
   all = alpha_init - 1
   aul = alpha_init + 1
 
@@ -116,7 +116,7 @@ function alpha_bounds(){
   return [all, aul]
 }
 function beta_bounds(){
-  // beta continuous on [-180, 180]
+  // beta continuous on [-180, 180)
   bll = beta_init - 1
   bul = beta_init + 1
 
@@ -129,7 +129,7 @@ function beta_bounds(){
   return [bll, bul]
 }
 function gamma_bounds(){
-  // gamma continuous on [-90, 90]
+  // gamma continuous on [-90, 90)
   gll = gamma_init - 1
   gul = gamma_init + 1
 
