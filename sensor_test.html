@@ -74,7 +74,7 @@ function motion(event){
   //   alert("human user - accelerometer")
   // }
 
-  if((Math.round(event.acceleration.x * 10) / 10) != 0 || (Math.round(event.acceleration.x * 10) / 10) != 0 || (Math.round(event.acceleration.x * 10) / 10) != 0){
+  if(Math.abs(Math.round(event.acceleration.x * 10) / 10) > 0.1 || Math.abs(Math.round(event.acceleration.x * 10) / 10) > 0.1 || Math.abs(Math.round(event.acceleration.x * 10) / 10) > 0.1){
     alert("human user - accelerometer")
   }
 }
