@@ -76,7 +76,7 @@ function orientation(event){
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
     + Math.round(event.alpha * 10) / 10 + ", "
     + Math.round(event.beta * 10) / 10 + ", "
-    + Math.round(event.gama * 10) / 10 + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
+    + Math.round(event.gamma * 10) / 10 + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
 
   // if((mag_alpha_high > 0.3 && mag_alpha_high < 359.7) || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_beta_low < -1.0 || mag_gamma_low < -0.6){
   //   alert("human user - magnetometer")
