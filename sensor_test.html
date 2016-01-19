@@ -17,70 +17,129 @@ along with code. If not, see <http://www.gnu.org/licenses/>.
 <meta charset="UTF-8"/>
 <title>Sensors</title>
 <script type="text/javascript">
-var accel_x_high = 0
-var accel_y_high = 0
-var accel_z_high = 0
-var accel_x_low = 0
-var accel_y_low = 0
-var accel_z_low = 0
-var mag_alpha_high = 0
-var mag_beta_high = 0
-var mag_gamma_high = 0
-var mag_alpha_low = 0
-var mag_beta_low = 0
-var mag_gamma_low = 0
-var mag_alpha_init = 0
-var mag_beta_init = 0
-var mag_gamma_init = 0
+// var accel_x_high = 0
+// var accel_y_high = 0
+// var accel_z_high = 0
+// var accel_x_low = 0
+// var accel_y_low = 0
+// var accel_z_low = 0
+// var mag_alpha_high = 0
+// var mag_beta_high = 0
+// var mag_gamma_high = 0
+// var mag_alpha_low = 0
+// var mag_beta_low = 0
+// var mag_gamma_low = 0
+var alpha_init = 0
+var beta_init = 0
+var gamma_init = 0
+var alpha_lower_limit = 0
+var alpha_upper_limit = 0
 
-function set_initials(){
-  mag_alpha_init = event.alpha
-  mag_beta_init = event.beta
-  mag_gamma_init = event.gamma
+function setup_orientation(){
+  alpha_init = event.alpha
+  beta_init = event.beta
+  gamma_init = event.gamma
+
+  alpha_limits = alpha_bounds()
+  alpha_lower_limit = alpha_limits[0]
+  alpha_upper_limit = alpha_limits[1]
+
+  beta_limits = beta_bounds()
+  beta_lower_limit = beta_limits[0]
+  beta_upper_limit = beta_limits[1]
+
+  gamma_limits = gamma_bounds()
+  gamma_lower_limit = gamma_limits[0]
+  gamma_upper_limit = gamma_limits[1]
 }
 function motion(event){
-  var accel_x_temp = event.acceleration.x
-  var accel_y_temp = event.acceleration.y
-  var accel_z_temp = event.acceleration.z
-
-  accel_x_temp > accel_x_high ? accel_x_high = accel_x_temp : accel_x_high = accel_x_high
-  accel_y_temp > accel_y_high ? accel_y_high = accel_y_temp : accel_y_high = accel_y_high
-  accel_z_temp > accel_z_high ? accel_z_high = accel_z_temp : accel_z_high = accel_z_high
-
-  accel_x_temp < accel_x_low ? accel_x_low = accel_x_temp : accel_x_low = accel_x_low
-  accel_y_temp < accel_y_low ? accel_y_low = accel_y_temp : accel_y_low = accel_y_low
-  accel_z_temp < accel_z_low ? accel_z_low = accel_z_temp : accel_z_low = accel_z_low
+  // var accel_x_temp = event.acceleration.x
+  // var accel_y_temp = event.acceleration.y
+  // var accel_z_temp = event.acceleration.z
+  //
+  // accel_x_temp > accel_x_high ? accel_x_high = accel_x_temp : accel_x_high = accel_x_high
+  // accel_y_temp > accel_y_high ? accel_y_high = accel_y_temp : accel_y_high = accel_y_high
+  // accel_z_temp > accel_z_high ? accel_z_high = accel_z_temp : accel_z_high = accel_z_high
+  //
+  // accel_x_temp < accel_x_low ? accel_x_low = accel_x_temp : accel_x_low = accel_x_low
+  // accel_y_temp < accel_y_low ? accel_y_low = accel_y_temp : accel_y_low = accel_y_low
+  // accel_z_temp < accel_z_low ? accel_z_low = accel_z_temp : accel_z_low = accel_z_low
 
   document.getElementById("accelerometer").innerHTML = "Accelerometer: "
     + (Math.round(event.acceleration.x * 10) / 10) + ", "
     + (Math.round(event.acceleration.x * 10) / 10) + ", "
-    + (Math.round(event.acceleration.x * 10) / 10) + "<br/>Highs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "<br/>Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
+    + (Math.round(event.acceleration.x * 10) / 10);// + "<br/>Highs: " + accel_x_high + ", " + accel_y_high + ", " + accel_z_high+ "<br/>Lows: " + accel_x_low + ", " + accel_y_low + ", " + accel_z_low;
 
   // if(accel_x_high > 0.2 || accel_y_high > 0.2 || accel_z_high > 0.2 || accel_x_low < -0.2 || accel_y_low < -0.2 || accel_z_low < -0.2){
   //   alert("human user - accelerometer")
   // }
+
+  if((Math.round(event.acceleration.x * 10) / 10) != 0 || (Math.round(event.acceleration.x * 10) / 10) != 0 || (Math.round(event.acceleration.x * 10) / 10) != 0){
+    alert("human user - accelerometer")
+  }
 }
 function orientation(event){
-  var mag_alpha_temp = event.alpha
-  var mag_beta_temp = event.beta
-  var mag_gamma_temp = event.gamma
-
-  mag_alpha_temp > mag_alpha_high ? mag_alpha_high = mag_alpha_temp : mag_alpha_high = mag_alpha_high
-  mag_beta_temp > mag_beta_high ? mag_beta_high = mag_beta_temp : mag_beta_high = mag_beta_high
-  mag_gamma_temp > mag_gamma_high ? mag_gamma_high = mag_gamma_temp : mag_gamma_high = mag_gamma_high
-
-  mag_alpha_temp < mag_alpha_low ? mag_alpha_low = mag_alpha_temp : mag_alpha_low = mag_alpha_low
-  mag_beta_temp < mag_beta_low ? mag_beta_low = mag_beta_temp : mag_beta_low = mag_beta_low
-  mag_gamma_temp < mag_gamma_low ? mag_gamma_low = mag_gamma_temp : mag_gamma_low = mag_gamma_low
+  // var mag_alpha_temp = event.alpha
+  // var mag_beta_temp = event.beta
+  // var mag_gamma_temp = event.gamma
+  //
+  // mag_alpha_temp > mag_alpha_high ? mag_alpha_high = mag_alpha_temp : mag_alpha_high = mag_alpha_high
+  // mag_beta_temp > mag_beta_high ? mag_beta_high = mag_beta_temp : mag_beta_high = mag_beta_high
+  // mag_gamma_temp > mag_gamma_high ? mag_gamma_high = mag_gamma_temp : mag_gamma_high = mag_gamma_high
+  //
+  // mag_alpha_temp < mag_alpha_low ? mag_alpha_low = mag_alpha_temp : mag_alpha_low = mag_alpha_low
+  // mag_beta_temp < mag_beta_low ? mag_beta_low = mag_beta_temp : mag_beta_low = mag_beta_low
+  // mag_gamma_temp < mag_gamma_low ? mag_gamma_low = mag_gamma_temp : mag_gamma_low = mag_gamma_low
 
   document.getElementById("magnetometer").innerHTML = "Magnetometer: "
     + (Math.round(event.alpha * 10) / 10) + ", "
     + (Math.round(event.beta * 10) / 10) + ", "
-    + (Math.round(event.gamma * 10) / 10) + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
+    + (Math.round(event.gamma * 10) / 10);// + "<br/>Highs: " + mag_alpha_high + ", " + mag_beta_high + ", " + mag_gamma_high+ "<br/>Lows: " + mag_alpha_low + ", " + mag_beta_low + ", " + mag_gamma_low;
 
   // if((mag_alpha_high > 0.3 && mag_alpha_high < 359.7) || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_beta_low < -1.0 || mag_gamma_low < -0.6){
   //   alert("human user - magnetometer")
   // }
+
+  // if((Math.round(event.alpha * 10) / 10) < alpha_upper_limit & (Math.round(event.alpha * 10) / 10) > alpha_upper_limit) || (Math.round(event.beta * 10) / 10)  < beta_limit
+}
+function alpha_bounds(){
+  // alpha continuous on [0, 360]
+  all = alpha_init - 1
+  aul = alpha_init + 1
+
+  if(all < 0){
+    all = 360 + all
+  }
+  if(aul > 360){
+    aul = 360 - aul
+  }
+  return [all, aul]
+}
+function beta_bounds(){
+  // beta continuous on [-180, 180]
+  bll = beta_init - 1
+  bul = beta_init + 1
+
+  if(bll < -180){
+    bll = 360 + bll
+  }
+  if(bul > 180){
+    bul = -360 + bul
+  }
+  return [bll, bul]
+}
+function gamma_bounds(){
+  // gamma continuous on [-90, 90]
+  gll = gamma_init - 1
+  gul = gamma_init + 1
+
+  if(gll < -90){
+    gll = 180 + gll
+  }
+  if(gul > 90){
+    gul = -180 + gul
+  }
+  return [gll, gul]
 }
 function go(){
   if(window.DeviceMotionEvent){
@@ -93,6 +152,7 @@ function go(){
   }
   if(window.DeviceOrientationEvent){
     window.addEventListener("deviceorientation", orientation, false);
+    setup_orientation();
   }else{
     var status = document.getElementById("status");
     status.innerHTML = status.innerHTML.replace(
