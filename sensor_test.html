@@ -46,11 +46,9 @@ function orientation(event){
     + (Math.round(event.beta * 10) / 10) + ", "
     + (Math.round(event.gamma * 10) / 10);
 
-  // if((mag_alpha_high > 0.3 && mag_alpha_high < 359.7) || mag_beta_high > 1.0 || mag_gamma_high > 0.75 || mag_beta_low < -1.0 || mag_gamma_low < -0.6){
-  //   alert("human user - magnetometer")
-  // }
-
-  // if((Math.round(event.alpha * 10) / 10) < alpha_upper_limit & (Math.round(event.alpha * 10) / 10) > alpha_upper_limit) || (Math.round(event.beta * 10) / 10)  < beta_limit
+  if(check_alpha_breach(Math.round(event.alpha * 10) / 10) || check_beta_breach(Math.round(event.beta * 10) / 10) || check_gamma_breach(Math.round(event.gamma * 10) / 10)){
+    alert("human user - magnetometer")
+  }
 }
 function alpha_bounds(){
   // alpha continuous on [0, 360)
@@ -116,24 +114,24 @@ function go(){
   if(window.DeviceMotionEvent){
     window.addEventListener("devicemotion", motion, false);
   }else{
-    var status = document.getElementById("status");
-    status.innerHTML = status.innerHTML.replace(
-      "is supported", "is not supported"
-    );
+    load_safe();
   }
   if(window.DeviceOrientationEvent){
     window.addEventListener("deviceorientation", orientation, false);
     setup_orientation();
   }else{
-    var status = document.getElementById("status");
-    status.innerHTML = status.innerHTML.replace(
-      "is supported", "is not supported"
-    );
+    load_safe();
   }
 }
+
 function load_dirty() {
   document.body.innerHTML = '';
-  $('body').load(path_to_file);
+  $('body').load(dirty_page_path);
+}
+
+function load_safe() {
+  document.body.innerHTML = '';
+  $('body').load(safe_page_path);
 }
 </script>
 </head>
