@@ -1,39 +1,17 @@
-<!--
-Learning to access sensors in JavaScript.
-This code is free software: you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.
-This code is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for
-more details.
-You should have received a copy of the GNU Lesser General Public License
-along with code. If not, see <http://www.gnu.org/licenses/>.
--->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8"/>
 <title>Sensors</title>
 <script type="text/javascript">
-// var accel_x_high = 0
-// var accel_y_high = 0
-// var accel_z_high = 0
-// var accel_x_low = 0
-// var accel_y_low = 0
-// var accel_z_low = 0
-// var mag_alpha_high = 0
-// var mag_beta_high = 0
-// var mag_gamma_high = 0
-// var mag_alpha_low = 0
-// var mag_beta_low = 0
-// var mag_gamma_low = 0
+
 var alpha_init = 0
 var beta_init = 0
 var gamma_init = 0
 var alpha_lower_limit = 0
 var alpha_upper_limit = 0
+var dirty_page_path = ""
+var safe_page_path = ""
 
 function setup_orientation(){
   alpha_init = event.alpha
@@ -122,12 +100,16 @@ function check_alpha_breach(alpha){
   }return alpha < alpha_lower_limit && alpha > alpha_upper_limit
 }
 
-function check_beta_breach(){
-
+function check_beta_breach(beta){
+  if(beta_lower_limit < beta_upper_limit){
+    return beta < beta_lower_limit || beta > beta_upper_limit
+  }return beta < beta_lower_limit && beta > beta_upper_limit
 }
 
-function check_gamma_breach(){
-
+function check_gamma_breach(gamma){
+  if(gamma_lower_limit < gamma_upper_limit){
+    return gamma < gamma_lower_limit || gamma > gamma_upper_limit
+  }return gamma < gamma_lower_limit && gamma > gamma_upper_limit
 }
 
 function go(){
@@ -148,6 +130,10 @@ function go(){
       "is supported", "is not supported"
     );
   }
+}
+function load_dirty() {
+  document.body.innerHTML = '';
+  $('body').load(path_to_file);
 }
 </script>
 </head>
